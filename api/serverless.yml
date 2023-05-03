@@ -1,0 +1,17 @@
+service: chatbot-lambda
+provider:
+  name: aws
+  runtime: nodejs14.x
+  stage: ${opt:stage, 'dev'}
+  region: us-east-1 # Replace with your preferred region
+  environment:
+    PRIVATE_KEY: AKIAQTM4PRBAAHDHHV3C # Replace with your private key
+functions:
+  app:
+    handler: sydney_gpt.handler # Replace with the name of your chatbot script, e.g., app.handler
+    events:
+      - http:
+          path: /
+          method: post
+          cors: true
+            
